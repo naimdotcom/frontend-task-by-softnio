@@ -973,6 +973,14 @@ video {
   max-width: 1320px;
 }
 
+.max-w-full{
+  max-width: 100%;
+}
+
+.max-w-\[400px\]{
+  max-width: 400px;
+}
+
 .flex-shrink{
   flex-shrink: 1;
 }
@@ -2300,6 +2308,11 @@ video {
   padding-bottom: 2.75rem;
 }
 
+.py-8{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pt-2{
   padding-top: 0.5rem;
 }
@@ -2354,6 +2367,10 @@ video {
 
 .pt-20{
   padding-top: 5rem;
+}
+
+.pt-16{
+  padding-top: 4rem;
 }
 
 .text-left{
@@ -3127,8 +3144,35 @@ video {
 }
 
 @media (min-width: 640px){
+  .sm\:flex-row{
+    flex-direction: row;
+  }
+
+  .sm\:flex-col{
+    flex-direction: column;
+  }
+
   .sm\:underline{
     text-decoration-line: underline;
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:max-w-\[1320px\]{
+    max-width: 1320px;
+  }
+
+  .lg\:flex-row{
+    flex-direction: row;
+  }
+
+  .lg\:py-20{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .lg\:pt-5{
+    padding-top: 1.25rem;
   }
 }
 
