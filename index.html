@@ -356,6 +356,88 @@
     </div>
     <!-- main container end -->
 
+    <!-- todo:modal -->
+    <div
+      id="modal"
+      class="absolute hidden -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+    >
+      <div id="modal-cart" class="bg-white rounded-lg shadow-md p-11">
+        <div>
+          <h2
+            class="text-xl font-bold leading-normal text-primaryFont font-roboto"
+          >
+            Your Cart
+          </h2>
+
+          <div>
+            <table class="w-full text-left border-collapse table-auto">
+              <thead>
+                <tr class="border-b">
+                  <th class="py-3">
+                    <h4
+                      class="text-sm font-normal leading-normal text-secondaryFont font-roboto"
+                    >
+                      Item
+                    </h4>
+                  </th>
+                  <th class="px-4 py-3">
+                    <div
+                      class="text-sm font-normal leading-normal text-center text-secondaryFont font-roboto"
+                    >
+                      Color
+                    </div>
+                  </th>
+                  <th class="px-4 py-3">
+                    <div
+                      class="text-sm font-normal leading-normal text-center text-secondaryFont font-roboto"
+                    >
+                      Size
+                    </div>
+                  </th>
+                  <th class="px-4 py-3">
+                    <div
+                      class="text-sm font-normal leading-normal text-center text-secondaryFont font-roboto"
+                    >
+                      Qnt
+                    </div>
+                  </th>
+                  <th class="py-3">
+                    <div
+                      class="text-sm font-normal leading-normal text-right text-secondaryFont font-roboto"
+                    >
+                      Price
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="modal-cart-body">
+                <!-- Row 1 -->
+              </tbody>
+              <!-- Total -->
+              <tfoot id="modal-cart-total"></tfoot>
+            </table>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex items-center justify-end gap-6 mt-6">
+            <button
+              id="close-check-out"
+              class="px-6 py-2 text-gray-600 border border-gray-300 rounded-lg active:bg-gray-100"
+            >
+              Continue Shopping
+            </button>
+            <button
+              id="final-check-out"
+              class="px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal end -->
+
     <!-- todo: script  -->
     <script src="./src/index.js"></script>
   </body>
