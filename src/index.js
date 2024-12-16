@@ -11,6 +11,7 @@ const modalCart = document.getElementById("modal-cart");
 const checkoutBtn = document.getElementById("open-check-out");
 const closeBtn = document.getElementById("close-check-out");
 const finalCheckOutBtn = document.getElementById("final-check-out");
+const starRating = document.getElementById("star-rating");
 
 const checkoutProducts = [];
 let addToCardProduct = {
@@ -21,6 +22,26 @@ let addToCardProduct = {
   productPrice: "69",
   productCount: "1",
 };
+
+// todo: show star rating
+/*
+
+*/
+function showStarRating(rating) {
+  let ratingStar = "";
+  for (let i = 0; i < 5; i++) {
+    if (rating >= i + 1) {
+      ratingStar += `<img src="./public/Icon/star-fill.svg" alt="" />`;
+    } else if (rating > i && rating < i + 1) {
+      ratingStar += `<img src="./public/Icon/star-half-fill.svg" alt="" />`;
+    } else {
+      ratingStar += `<img src="./public/Icon/star.svg" alt="" />`;
+    }
+  }
+  starRating.innerHTML = ratingStar;
+}
+showStarRating(3.5);
+
 // todo: on change of input value change the image and set aathe state also
 colorInputs.forEach((input) => {
   input.addEventListener("change", () => {
@@ -39,8 +60,9 @@ colorInputs.forEach((input) => {
 
 sizeInputs.forEach((input) => {
   input.addEventListener("change", () => {
-    console.log(input.value);
-    console.log(input.dataset.productPrice);
+    const productPrice = document.getElementById("product-price");
+
+    productPrice.textContent = `$${input.dataset.productPrice}.00`;
     addToCardProduct = {
       ...addToCardProduct,
       productSize: input.value,

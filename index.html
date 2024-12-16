@@ -12,18 +12,18 @@
     <!-- todo: main container -->
     <div class="container h-full mx-auto">
       <div
-        class="relative grid h-screen px-8 my-20 sm:px-16 place-items-center lg:px-0"
+        class="relative grid px-8 my-8 lg:h-screen lg:my-0 sm:px-16 place-items-center md:px-0"
       >
         <!-- todo: product container -->
         <div
-          class="flex flex-col lg:items-center lg:flex-row gap-x-16 max-w-full lg:max-w-[1320px]"
+          class="flex flex-col lg:items-center md:flex-row lg:gap-x-16 md:gap-x-10 max-w-full lg:max-w-[1320px]"
         >
           <!-- !product image start-->
           <div class="w-full">
             <picture class="w-full">
               <img
                 id="product-image"
-                class=""
+                class="sm:max-h-full md:max-h-full"
                 src="./public/product-images/purple.png"
                 alt="an image of purple watch, named Classy Modern Smart watch"
               />
@@ -34,14 +34,16 @@
           <!-- !product details -->
           <div class="py-8 lg:py-20">
             <h1
-              class="text-4xl font-bold leading-10 text-primaryFont font-roboto"
+              class="text-2xl font-bold leading-10 lg:text-4xl text-primaryFont font-roboto"
             >
               Classy Modern Smart watch
             </h1>
 
             <!-- !product rating start -->
             <div class="flex items-center gap-2 pt-2">
-              <div>stars</div>
+              <div id="star-rating" class="flex">
+                <img src="./public/Icon/star.svg" alt="" />
+              </div>
               <div>(2 Reviews)</div>
             </div>
             <!-- product rating end -->
@@ -54,6 +56,7 @@
                 $99.00
               </h3>
               <h3
+                id="product-price"
                 class="text-[#6576ff] text-2xl font-bold font-roboto leading-loose"
               >
                 $79.00
@@ -63,9 +66,11 @@
 
             <!-- !product short detail start-->
             <div
-              class="pt-2 lg:pt-5 max-w-[500px] md:max-w-[600px] lg:max-w-full"
+              class="pt-2 lg:pt-5 max-w-[500px] sm:max-w-[500px] lg:max-w-full"
             >
-              <p class="text-lg font-normal text-secondaryFont font-roboto">
+              <p
+                class="text-base font-normal lg:text-lg text-secondaryFont font-roboto"
+              >
                 I must explain to you how all this mistaken idea of denoun cing
                 ple praising pain was born and I will give you a complete
                 account of the system, and expound the actual teaching.
@@ -188,7 +193,9 @@
                   Wrist Size
                 </h3>
               </div>
-              <ul class="grid w-full grid-cols-4 gap-3 mt-2 lg:gap-6 lg:w-2/3">
+              <ul
+                class="grid w-full grid-cols-4 gap-3 mt-2 md:gap-2 lg:gap-6 lg:w-2/3"
+              >
                 <li>
                   <input
                     type="radio"
@@ -291,9 +298,10 @@
             <!-- product size end -->
 
             <!-- !product count, favorite and add to cart start-->
-            <div class="flex items-center gap-4 pt-4">
+            <div class="flex flex-col items-center gap-4 pt-4 sm:flex-row">
+              <!-- product count start -->
               <div
-                class="flex items-center border-2 border-[#DBDFEA] rounded-md"
+                class="grid lg:w-fit w-full items-center border-2 text-center grid-cols-3 border-[#DBDFEA] rounded-md"
               >
                 <button
                   id="decrement"
@@ -303,7 +311,7 @@
                 </button>
 
                 <p
-                  class="px-6 text-sm font-normal leading-8 border-2 border-t-0 border-b-0 text-primaryFont font-roboto"
+                  class="px-6 text-sm font-normal leading-8 text-center border-2 border-t-0 border-b-0 text-primaryFont font-roboto"
                   id="count"
                 >
                   1
@@ -316,26 +324,33 @@
                   <span class="text-lg leading-8 text-secondaryFont">+</span>
                 </button>
               </div>
+              <!-- product count end -->
 
-              <!-- add to cart -->
-              <div class="">
-                <button
-                  id="add-to-card"
-                  class="px-6 py-2 rounded bg-purpleFont"
-                >
-                  <div class="text-xs font-bold text-white font-roboto">
-                    Add to Cart
-                  </div>
-                </button>
+              <div class="flex items-center w-full gap-4">
+                <!-- add to cart -->
+                <div class="w-full lg:w-fit">
+                  <button
+                    id="add-to-card"
+                    class="w-full px-6 py-2 rounded bg-purpleFont"
+                  >
+                    <div class="text-xs font-bold text-white font-roboto">
+                      Add to Cart
+                    </div>
+                  </button>
+                </div>
+                <!-- add to cart end -->
+                <!-- favorite -->
+                <div id="favorite" class="">
+                  <button>
+                    <img
+                      class="w-10 lg:w-fit"
+                      src="./public/Icon/heart.svg"
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <!-- favorite end -->
               </div>
-              <!-- add to cart end -->
-              <!-- favorite -->
-              <div id="favorite">
-                <button>
-                  <img src="./public/Icon/heart.svg" alt="" />
-                </button>
-              </div>
-              <!-- favorite end -->
             </div>
             <!-- product count, favorite and add to cart end-->
           </div>
@@ -345,7 +360,7 @@
         <!-- product container -->
         <!-- !Check out button start-->
         <div
-          class="lg:absolute lg:bottom-11 lg:right-[48%] justify-self-start w-full lg:w-fit"
+          class="lg:absolute relative lg:bottom-11 lg:right-[48%] justify-self-start w-full lg:w-fit"
         >
           <button
             id="open-check-out"
