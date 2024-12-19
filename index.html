@@ -298,10 +298,12 @@
             <!-- product size end -->
 
             <!-- !product count, favorite and add to cart start-->
-            <div class="flex flex-col items-center gap-4 pt-4 sm:flex-row">
+            <div
+              class="flex flex-col items-center w-full gap-4 pt-4 sm:flex-row"
+            >
               <!-- product count start -->
               <div
-                class="grid lg:w-fit w-full items-center border-2 text-center grid-cols-3 border-[#DBDFEA] rounded-md"
+                class="grid lg:w-5/12 w-full items-center border-2 text-center grid-cols-3 border-[#DBDFEA] rounded-md"
               >
                 <button
                   id="decrement"
@@ -311,7 +313,7 @@
                 </button>
 
                 <p
-                  class="px-6 text-sm font-normal leading-8 text-center border-2 border-t-0 border-b-0 text-primaryFont font-roboto"
+                  class="col-span-1 pl-5 pr-5 text-sm font-normal leading-8 text-center border-2 border-t-0 border-b-0 text-primaryFont font-roboto"
                   id="count"
                 >
                   1
@@ -328,25 +330,25 @@
 
               <div class="flex items-center w-full gap-4">
                 <!-- add to cart -->
-                <div class="w-full lg:w-fit">
+                <div class="relative w-full lg:w-fit">
                   <button
                     id="add-to-card"
                     class="w-full px-6 py-2 rounded bg-purpleFont"
                   >
-                    <div class="text-xs font-bold text-white font-roboto">
+                    <div
+                      id="product-addToCard-message"
+                      class="text-xs font-bold text-white font-roboto"
+                    >
                       Add to Cart
                     </div>
                   </button>
+                  <p class="absolute"></p>
                 </div>
                 <!-- add to cart end -->
                 <!-- favorite -->
                 <div id="favorite" class="">
-                  <button>
-                    <img
-                      class="w-10 lg:w-fit"
-                      src="./public/Icon/heart.svg"
-                      alt=""
-                    />
+                  <button id="add-to-favorite" class="">
+                    <img class="w-8" src="./public/Icon/love.svg" alt="" />
                   </button>
                 </div>
                 <!-- favorite end -->
@@ -374,11 +376,12 @@
             <div
               class="px-1.5 py-0.5 bg-white rounded justify-center items-center gap-2 flex"
             >
-              <h4
+              <span
+                id="checkout-product-count"
                 class="text-xs font-bold leading-none tracking-tight text-primaryFont font-roboto"
               >
-                2
-              </h4>
+                0
+              </span>
             </div>
           </button>
         </div>
@@ -387,10 +390,11 @@
     </div>
     <!-- main container end -->
 
-    <!-- todo:modal -->
+    <!-- ========== todo:modal ==========-->
+
     <div
-      id="modal"
-      class="absolute hidden -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+      id="modal-overlay"
+      class="fixed top-0 left-0 items-center justify-center hidden w-full h-full bg-black/50"
     >
       <div id="modal-cart" class="bg-white rounded-lg shadow-md p-11">
         <div>
@@ -467,6 +471,7 @@
         </div>
       </div>
     </div>
+
     <!-- modal end -->
 
     <!-- todo: script  -->

@@ -6,12 +6,14 @@ const decrementBtn = document.getElementById("decrement");
 const incrementBtn = document.getElementById("increment");
 const countOfProduct = document.getElementById("count");
 const addToCardBtn = document.getElementById("add-to-card");
-const modal = document.getElementById("modal");
+const modalOverlay = document.getElementById("modal-overlay");
 const modalCart = document.getElementById("modal-cart");
 const checkoutBtn = document.getElementById("open-check-out");
 const closeBtn = document.getElementById("close-check-out");
 const finalCheckOutBtn = document.getElementById("final-check-out");
 const starRating = document.getElementById("star-rating");
+const favoriteBtn = document.getElementById("add-to-favorite");
+const productCheckoutCount = document.getElementById("checkout-product-count");
 
 const checkoutProducts = [];
 let addToCardProduct = {
@@ -21,8 +23,8 @@ let addToCardProduct = {
   productName: "Classy Modern Smart watch",
   productPrice: "69",
   productCount: "1",
+  productFavorite: false,
 };
-
 // todo: show star rating
 /*
 
@@ -92,32 +94,126 @@ incrementBtn.addEventListener("click", () => {
 
 // todo: add to card
 addToCardBtn.addEventListener("click", () => {
-  console.log(addToCardProduct);
+  const productAddToCardMessage = document.getElementById(
+    "product-addToCard-message"
+  );
+
   checkoutProducts.push(addToCardProduct);
-  console.log(checkoutProducts);
+
+  productAddToCardMessage.textContent = "Product added to cart";
+
+  productCheckoutCount.textContent = checkoutProducts.length;
+
+  const timerId = setTimeout(() => {
+    productAddToCardMessage.textContent = "Add to Cart";
+    clearTimeout(timerId);
+  }, 2000);
 });
 
 // todo: checkout close and open
 checkoutBtn.addEventListener("click", () => {
-  modal.classList.remove("hidden");
+  console.log("clicked");
+
+  modalOverlay.classList.replace("hidden", "flex");
+
   checkOutProductModal();
 });
-
+function closeModal() {
+  if (modalOverlay) {
+    modalOverlay.classList.replace("flex", "hidden");
+  }
+}
 closeBtn.addEventListener("click", () => {
-  modal.classList.add("hidden");
+  closeModal();
+});
+document.addEventListener("click", (event) => {
+  console.log(
+    modalCart.contains(event.target),
+    modalOverlay.classList.contains("hidden"),
+    event.target.closest("#open-check-out")
+  );
+  console.log(
+    modalOverlay &&
+      modalCart &&
+      !modalCart.contains(event.target) &&
+      !modalOverlay.classList.contains("hidden") &&
+      !event.target.closest("#open-check-out")
+  );
+
+  // Check if the click is outside the modal
+  if (
+    modalOverlay &&
+    modalCart &&
+    !modalCart.contains(event.target) &&
+    !modalOverlay.classList.contains("hidden") &&
+    !event.target.closest("#open-check-out")
+  ) {
+    closeModal();
+  }
+});
+
+modalCart.addEventListener("click", (event) => {
+  event.stopPropagation(); // Prevent event from reaching document-level handler
+});
+
+favoriteBtn.addEventListener("click", () => {
+  console.log("clicked");
+
+  const favoriteImg = document.querySelector("#add-to-favorite img");
+  console.log(favoriteImg.src);
+  let url = favoriteImg.src;
+  let regex = /public\/.*$/;
+  let src = url.match(regex);
+
+  if (src[0] == "public/Icon/love.svg") {
+    favoriteImg.setAttribute("src", "./public/Icon/love-fill.svg");
+    addToCardProduct = {
+      ...addToCardProduct,
+      productFavorite: true,
+    };
+  } else {
+    favoriteImg.setAttribute("src", "./public/Icon/love.svg");
+  }
 });
 
 // todo: final check out
 function checkOutProductModal() {
   const modalCartBody = document.getElementById("modal-cart-body");
   const modalCartTotal = document.getElementById("modal-cart-total");
+
   let checkoutproductsHtml = "";
   let checkoutTotalHtml = "";
   let totalProductCount = 0;
   let totalProductPrice = 0;
 
   if (checkoutProducts.length === 0) {
-    modalCartTotal.innerHTML = `No products added to cart`;
+    modalCartBody.innerHTML = `No products added to cart`;
+    modalCartTotal.innerHTML = `
+    <tr>
+                    <td
+                      colspan="3"
+                      class="py-4 font-bold text-left text-gray-800"
+                    >
+                      Total
+                    </td>
+  
+                    <td class="py-4 font-bold text-gray-800">
+                      <div
+                        class="text-sm font-bold leading-loose text-center text-primaryFont font-roboto"
+                      >
+                        ${totalProductCount}
+                      </div>
+                    </td>
+                    <td class="py-4 pl-8 font-bold text-gray-800">
+                      <div
+                        class="text-lg font-bold leading-loose text-primaryFont font-roboto"
+                      >
+                        $${totalProductPrice}
+                      </div>
+                    </td>
+                  </tr>
+                  `;
+    productCheckoutCount.textContent = checkoutProducts.length;
     return;
   }
 
@@ -203,4 +299,17 @@ function checkOutProductModal() {
 
   modalCartBody.innerHTML = checkoutproductsHtml;
   modalCartTotal.innerHTML = checkoutTotalHtml;
+  productCheckoutCount.textContent = checkoutProducts.length;
 }
+
+finalCheckOutBtn.addEventListener("click", () => {
+  checkoutProducts.splice(0, checkoutProducts.length);
+  while (checkoutProducts.length > 0) {
+    checkoutProducts.pop();
+  }
+  addToCardProduct = {};
+
+  console.log(checkoutProducts, addToCardProduct);
+
+  closeModal();
+});
