@@ -6,7 +6,7 @@ This project involves converting a Figma design into clean and responsive web pa
 
 ### Live Preview
 
-[Click Here for Live Preview](https://naimdotcom.github.io/frontend-task-by-softnio/) \
+[Click Here for Live Preview](https://naimdotcom.github.io/frontend-task-by-softnio/)
 
 ### Features
 
